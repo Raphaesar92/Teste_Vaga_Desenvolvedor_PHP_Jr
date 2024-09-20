@@ -10,7 +10,11 @@ class CidadeSeeder extends Seeder
     public function run()
     {
         Cidade::firstOrCreate(['nome' => 'São Paulo', 'estado' => 'SP']);
+        Cidade::firstOrCreate(['nome' => 'Guarulhos', 'estado' => 'SP']);
         Cidade::firstOrCreate(['nome' => 'Rio de Janeiro', 'estado' => 'RJ']);
+        Cidade::firstOrCreate(['nome' => 'Trindade', 'estado' => 'RJ']);
+        Cidade::firstOrCreate(['nome' => 'Vilage', 'estado' => 'SC']);
+        Cidade::firstOrCreate(['nome' => 'Santa Catarina', 'estado' => 'SC']);
         Cidade::firstOrCreate(['nome' => 'Acre', 'estado' => 'AC']);
         Cidade::firstOrCreate(['nome' => 'Alagoas', 'estado' => 'AL']);
         Cidade::firstOrCreate(['nome' => 'Amapá', 'estado' => 'AM']);
@@ -32,7 +36,6 @@ class CidadeSeeder extends Seeder
         Cidade::firstOrCreate(['nome' => 'Rio Grande do Sul', 'estado' => 'RS']);
         Cidade::firstOrCreate(['nome' => 'Rondônia', 'estado' => 'RO']);
         Cidade::firstOrCreate(['nome' => 'Roraima', 'estado' => 'RR']);
-        Cidade::firstOrCreate(['nome' => 'Santa Catarina', 'estado' => 'SC']);
         Cidade::firstOrCreate(['nome' => 'Sergipe', 'estado' => 'SE']);
         Cidade::firstOrCreate(['nome' => 'Tocantins', 'estado' => 'TO']);
     }

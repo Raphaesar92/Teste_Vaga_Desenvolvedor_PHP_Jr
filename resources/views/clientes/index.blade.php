@@ -1,106 +1,3 @@
-{{-- @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <!-- Formulário de Consulta -->
-    <div class="card">
-        <div class="card-header">
-            <h4>Consulta Cliente</h4>
-        </div>
-        <div class="card-body">
-            <form method="GET" action="{{ route('clientes.index') }}">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="cpf">CPF:</label>
-                        <input type="text" name="cpf" class="form-control" placeholder="CPF">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="nome">Nome:</label>
-                        <input type="text" name="nome" class="form-control" placeholder="Nome">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="data_nasc">Data Nascimento:</label>
-                        <input type="date" name="data_nasc" class="form-control">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="genero">Sexo:</label><br>
-                        <input type="radio" name="genero" value="M"> Masculino
-                        <input type="radio" name="genero" value="F"> Feminino
-                    </div>
-                    <div class="col-md-3">
-                        <label for="estado">Estado:</label>
-                        <select name="estado" class="form-control">
-                            <option value="">Todos</option>
-                            <!-- Preencher com estados do Brasil -->
-                            <option value="SP">SP</option>
-                            <option value="RJ">RJ</option>
-                            <!-- Mais estados -->
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="cidade">Cidade:</label>
-                        <select name="cidade_id" class="form-control">
-                            <option value="">Todos</option>
-                            @foreach($cidades as $cidade)
-                                <option value="{{ $cidade->id }}">{{ $cidade->nome }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Pesquisar</button>
-                    <button type="reset" class="btn btn-secondary">Limpar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Tabela de Resultados -->
-    <div class="mt-4">
-        <h4>Resultado da Pesquisa</h4>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Cliente</th>
-                    <th>CPF</th>
-                    <th>Data Nasc.</th>
-                    <th>Estado</th>
-                    <th>Cidade</th>
-                    <th>Sexo</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($clientes as $cliente)
-                <tr>
-                    <td>{{ $cliente->nome }}</td>
-                    <td>{{ $cliente->cpf }}</td>
-                    <td>{{ $cliente->data_nasc }}</td>
-                    <td>{{ $cliente->estado }}</td>
-                    <td>{{ $cliente->cidade->nome }}</td>
-                    <td>{{ $cliente->genero == 'M' ? 'Masculino' : 'Feminino' }}</td>
-                    <td>
-                        <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-success btn-sm">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
-                        <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este cliente?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt"></i> Excluir
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <!-- Paginação -->
-        {{ $clientes->links() }}
-    </div>
-</div>
-@endsection --}}
-
 @extends('layouts.app')
 
 @section('content')
@@ -175,8 +72,10 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Pesquisar</button>
-                    <button type="reset" class="btn btn-secondary">Limpar</button>
+                    <div class="col-sm-4 col-md-3 button-container">
+                        <button type="submit" class="btn btn-primary pesquisar">Pesquisar</button>
+                        <button type="reset" class="btn btn-secondary limpar">Limpar</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -229,26 +128,6 @@
 </div>
 
 <!-- Modal de Confirmação -->
-{{-- <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <h4 class="modal-title" id="confirmDeleteModalLabel"><i class="fas fa-exclamation-circle text-warning" style="font-size: 48px;"></i></h4>
-                <h5 class="mt-3">Atenção!</h5>
-                <p>Deseja deletar esse cliente?</p>
-                 @foreach($clientes as $cliente)
-                <form id="deleteForm" method="POST" action="/clientes/{{ $cliente->id }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-danger">Sim</button>
-                </form>
-                @endforeach
-            </div>
-        </div>
-    </div>
-</div> --}}
-
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -300,23 +179,10 @@
 });
 
 // Mascara CPF
-$(document).ready(function() {
-    // Função para aplicar a máscara de CPF
-    $('#cpf').on('input', function() {
-        var input = $(this);
-        var value = input.val();
-        
-        // Remove qualquer caractere que não seja número
-        value = value.replace(/\D/g, '');
-        
-        // Aplica a máscara de CPF
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d)/, '$1.$2');
-        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-        
-        // Atualiza o campo com a máscara
-        input.val(value);
-    });
-});
+    <script>
+        $(document).ready(function(){
+            $('#cpf').mask('000.000.000-00', {reverse: true});
+        });
+    </script>
 </script>
 @endsection

@@ -1,0 +1,72 @@
+.btn-primary {
+    background-color: #007bff; /* Cor do botão Pesquisar */
+    border: none;
+    color: white;
+    
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Cor do botão Limpar */
+    border: none;
+    color: white;
+    
+}
+
+.pesquisar{
+    margin-right: 3%;
+}
+
+.limpar{
+    margin-right: -330%;
+    padding-left: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+input[type="text"], input[type="date"], select {
+    width: auto; /* Ajuste de largura para auto */
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+label {
+    margin-right: 10px; /* Espaçamento entre os labels e inputs */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #dee2e6; /* Bordas finas */
+    padding: 8px;
+    text-align: left;
+}
+
+.table-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.table-actions .btn {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.header-logo {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+}

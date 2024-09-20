@@ -95,9 +95,16 @@
                 </div>
 
                 <!-- Botões -->
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                    <a href="{{ route('clientes.index') }}" class="btn btn-secondary">Cancelar</a>
+                {{-- <div class="mt-4">
+                    <button type="submit" class="btn btn-primary pesquisar">Salvar Alterações</button>
+                    <a href="{{ route('clientes.index') }}" class="btn btn-secondary limpar">Cancelar</a>
+                </div> --}}
+
+                   <div class="mt-3">
+                    <div class="col-sm-4 col-md-3 button-container">
+                        <button type="submit" class="btn btn-primary pesquisar">Salvar Alterações</button>
+                        <a href="{{ route('clientes.index') }}" class="btn btn-secondary limpar">Cancelar</a>
+                    </div>
                 </div>
             </form>
         </div>

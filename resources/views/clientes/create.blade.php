@@ -35,12 +35,6 @@
                         <input type="radio" name="genero" value="F" required> Feminino
                     </div>
 
-                    <!-- Endereço -->
-                    <div class="col-md-8 mt-3">
-                        <label for="endereco">Endereço:</label>
-                        <input type="text" name="endereco" class="form-control" placeholder="Endereço">
-                    </div>
-
                     <!-- Estado -->
                     <div class="col-md-4 mt-3">
                         <label for="estado">Estado:</label>
@@ -90,9 +84,16 @@
                 </div>
 
                 <!-- Botões -->
-                <div class="mt-4">
+                {{-- <div class="mt-4">
                     <button type="submit" class="btn btn-primary">Salvar</button>
                     <button type="reset" class="btn btn-secondary">Limpar</button>
+                </div> --}}
+
+                  <div class="mt-3">
+                    <div class="col-sm-4 col-md-3 button-container">
+                        <button type="submit" class="btn btn-primary pesquisar">Salvar</button>
+                        <button type="reset" class="btn btn-secondary limpar">Limpar</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -118,6 +119,10 @@ $(document).ready(function() {
         input.val(value);
     });
 });
+
+ $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00', {reverse: true});
+    });
 </script>
 @endsection
 
