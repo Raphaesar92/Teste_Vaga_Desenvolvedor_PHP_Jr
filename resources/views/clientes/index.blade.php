@@ -179,10 +179,23 @@
 });
 
 // Mascara CPF
-    <script>
-        $(document).ready(function(){
-            $('#cpf').mask('000.000.000-00', {reverse: true});
-        });
-    </script>
+$(document).ready(function() {
+    // Função para aplicar a máscara de CPF
+    $('#cpf').on('input', function() {
+        var input = $(this);
+        var value = input.val();
+        
+        // Remove qualquer caractere que não seja número
+        value = value.replace(/\D/g, '');
+        
+        // Aplica a máscara de CPF
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        
+        // Atualiza o campo com a máscara
+        input.val(value);
+    });
+});
 </script>
 @endsection
