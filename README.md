@@ -4,6 +4,22 @@
 Para executar, digite o comando no terminal:
 - php artisan serve;
 
+Obrigatoriedades:
+1 - Gerar um script SQL que a partir do ID do cliente, retorne todos os representantes que podem
+atendê-lo.
+    -executar o comando no terminal:
+        php artisan executar:sql 1;
+        php artisan executar:sql 3;
+
+2 - Gerar um script SQL que retorne todos os representantes de uma determinada cidade.
+    - php artisan executar:representantes 1;
+    - php artisan executar:representantes 2;
+
+3 - Disponibilizar um arquivo com o DDL da base completa.
+    O arquivo se encontra em database/sql/clientes.dll
+
+4- O restante foi ajustado conforme consegui.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
