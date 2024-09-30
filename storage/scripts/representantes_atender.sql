@@ -1,3 +1,5 @@
+/*Representantes que podem atender*/
+
 SELECT r.id, r.nome, r.cidade_id, r.estado
 FROM representantes r
 JOIN clientes_representantes cr ON r.id = cr.representante_id
