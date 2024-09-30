@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Representante;
 use Illuminate\Http\Request;
+use App\Models\Cidade;
 
 class RepresentanteController extends Controller
 {
@@ -59,4 +60,18 @@ class RepresentanteController extends Controller
         $representante->delete();
         return response()->json(['message' => 'Representante deletado com sucesso']);
     }
+
+    public function getRepresentantesPorCidade($cidadeId)
+    {
+        // Encontra a cidade pelo ID
+        $cidade = Cidade::with('representantes')->find($cidadeId);
+
+        if (!$cidade) {
+            return response()->json(['message' => 'Cidade não encontrada'], 404);
+        }
+
+        // Retorna os representantes da cidade
+        return response()->json($cidade->representantes);
+    }
+
 }

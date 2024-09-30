@@ -40,6 +40,8 @@ Route::get('/representantes/{id}', [RepresentanteController::class, 'show']);
 
 Route::post('/representantes', [RepresentanteController::class, 'store']);
 
+Route::get('/cidades/{cidadeId}/representantes', [RepresentanteController::class, 'getRepresentantesPorCidade']);
+
 Route::put('/representantes/{id}', [RepresentanteController::class, 'update']);
 
 Route::delete('/representantes/{id}', [RepresentanteController::class, 'destroy']);
