@@ -8,12 +8,12 @@ Obrigatoriedades:
 1 - Gerar um script SQL que a partir do ID do cliente, retorne todos os representantes que podem
 atendê-lo.
     -executar o comando no terminal:
-        php artisan executar:sql 1;
-        php artisan executar:sql 3;
+        - php artisan executar:representantes 1;
+        - php artisan executar:representantes 2;
 
 2 - Gerar um script SQL que retorne todos os representantes de uma determinada cidade.
-    - php artisan executar:representantes 1;
-    - php artisan executar:representantes 2;
+    - php artisan executar:sql 1;
+    - php artisan executar:sql 3;
 
 3 - Disponibilizar um arquivo com o DDL da base completa.
     O arquivo se encontra em database/sql/clientes.dll
