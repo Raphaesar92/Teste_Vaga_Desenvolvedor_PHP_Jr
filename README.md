@@ -16,7 +16,7 @@ atendê-lo.
     - php artisan executar:sql 3;
 
 3 - Disponibilizar um arquivo com o DDL da base completa.
-    O arquivo se encontra em database/sql/clientes.dll
+    O arquivo se encontra em database/sql/sistema_cadastro.ddl
 
 4- O restante foi ajustado conforme consegui.
 
