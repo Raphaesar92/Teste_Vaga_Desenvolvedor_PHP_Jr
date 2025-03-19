@@ -13,7 +13,7 @@
                     <!-- CPF -->
                     <div class="col-md-4">
                         <label for="cpf">CPF:</label>
-                        <input type="text" name="cpf" class="form-control" placeholder="CPF" maxlength="14" required>
+                        <input type="text" name="cpf" id ="cpf" class="form-control" placeholder="CPF" maxlength="14" required>
                     </div>
 
                     <!-- Nome -->
@@ -100,7 +100,7 @@
     </div>
 </div>
 <script>
-/ Mascara CPF
+// Mascara CPF
 $(document).ready(function() {
     // Função para aplicar a máscara de CPF
     $('#cpf').on('input', function() {

@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label for="cpf">CPF:</label>
-                        <input type="text" name="cpf" class="form-control" placeholder="CPF" maxlength="14">
+                        <input type="text" name="cpf" id="cpf" class="form-control" placeholder="CPF" maxlength="14">
                     </div>
                     <div class="col-md-3">
                         <label for="nome">Nome:</label>
@@ -66,12 +66,17 @@
                         <select name="cidade_id" class="form-control" required>
                             <option value="">Selecione</option>
                             @foreach($cidades as $cidade)
-                                <option value="{{ $cidade->id }}">{{ $cidade->nome }}</option>
+                            <option value="{{ $cidade->id }}">{{ $cidade->nome }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="mt-3">
+                    <!-- <div class="col-sm-4 col-md-3 button-container"> -->
+                    <a href="{{ route('clientes.create') }}" class="btn btn-success btn-sm">
+                        <i class="fas fa-plus"></i> Criar Novo Cliente
+                    </a><br>
+                    <!-- </div> -->
                     <div class="col-sm-4 col-md-3 button-container">
                         <button type="submit" class="btn btn-primary pesquisar">Pesquisar</button>
                         <button type="reset" class="btn btn-secondary limpar">Limpar</button>
@@ -83,7 +88,7 @@
 
     <div class="container">
         <!-- Formulário de consulta de clientes -->
-        
+
         <!-- Tabela de Resultados -->
         <div class="mt-4">
             <h4>Resultado da Pesquisa</h4>
@@ -96,13 +101,13 @@
                         <th>Data Nasc.</th>
                         <th>Estado</th>
                         <th>Cidade</th>
-                        <th>Sexo</th> 
+                        <th>Sexo</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($clientes as $cliente)
                     <tr>
-                    <td>
+                        <td>
                             <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-success btn-sm">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
@@ -116,7 +121,7 @@
                         <td>{{ $cliente->data_nasc }}</td>
                         <td>{{ $cliente->estado }}</td>
                         <td>{{ $cliente->cidade->nome }}</td>
-                        <td>{{ $cliente->genero == 'M' ? 'M' : 'F' }}</td> 
+                        <td>{{ $cliente->genero == 'M' ? 'M' : 'F' }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -165,5 +170,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Mascara CPF
+    $(document).ready(function() {
+        // Função para aplicar a máscara de CPF
+        $('#cpf').on('input', function() {
+            var input = $(this);
+            var value = input.val();
+
+            // Remove qualquer caractere que não seja número
+            value = value.replace(/\D/g, '');
+
+            // Aplica a máscara de CPF
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+            // Atualiza o campo com a máscara
+            input.val(value);
+        });
+    });
+
+    $(document).ready(function() {
+        $('#cpf').mask('000.000.000-00', {
+            reverse: true
+        });
+    });
+</script>
 
 @endsection

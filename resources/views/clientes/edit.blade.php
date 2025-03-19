@@ -11,12 +11,12 @@
             <form method="POST" action="{{ route('clientes.update', $cliente->id) }}">
                 @csrf
                 @method('PUT')
-                
+
                 <div class="row">
                     <!-- CPF -->
                     <div class="col-md-4">
                         <label for="cpf">CPF:</label>
-                        <input type="text" name="cpf" class="form-control" value="{{ old('cpf', $cliente->cpf) }}" maxlength="14" required>
+                        <input type="text" name="cpf" id="cpf" class="form-control" value="{{ old('cpf', $cliente->cpf) }}" maxlength="14" required>
                     </div>
 
                     <!-- Nome -->
@@ -86,9 +86,9 @@
                         <select name="cidade_id" class="form-control" required>
                             <option value="">Selecione</option>
                             @foreach($cidades as $cidade)
-                                <option value="{{ $cidade->id }}" {{ $cliente->cidade_id == $cidade->id ? 'selected' : '' }}>
-                                    {{ $cidade->nome }}
-                                </option>
+                            <option value="{{ $cidade->id }}" {{ $cliente->cidade_id == $cidade->id ? 'selected' : '' }}>
+                                {{ $cidade->nome }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -98,16 +98,43 @@
                 {{-- <div class="mt-4">
                     <button type="submit" class="btn btn-primary pesquisar">Salvar Alterações</button>
                     <a href="{{ route('clientes.index') }}" class="btn btn-secondary limpar">Cancelar</a>
-                </div> --}}
+        </div> --}}
 
-                   <div class="mt-3">
-                    <div class="col-sm-4 col-md-3 button-container">
-                        <button type="submit" class="btn btn-primary pesquisar">Salvar Alterações</button>
-                        <a href="{{ route('clientes.index') }}" class="btn btn-secondary limpar">Cancelar</a>
-                    </div>
-                </div>
-            </form>
+        <div class="mt-3">
+            <div class="col-sm-4 col-md-3 button-container">
+                <button type="submit" class="btn btn-primary pesquisar">Salvar Alterações</button>
+                <a href="{{ route('clientes.index') }}" class="btn btn-secondary limpar">Cancelar</a>
+            </div>
         </div>
+        </form>
     </div>
 </div>
+</div>
+<script>
+    // Mascara CPF
+    $(document).ready(function() {
+        // Função para aplicar a máscara de CPF
+        $('#cpf').on('input', function() {
+            var input = $(this);
+            var value = input.val();
+
+            // Remove qualquer caractere que não seja número
+            value = value.replace(/\D/g, '');
+
+            // Aplica a máscara de CPF
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+            // Atualiza o campo com a máscara
+            input.val(value);
+        });
+    });
+
+    $(document).ready(function() {
+        $('#cpf').mask('000.000.000-00', {
+            reverse: true
+        });
+    });
+</script>
 @endsection
