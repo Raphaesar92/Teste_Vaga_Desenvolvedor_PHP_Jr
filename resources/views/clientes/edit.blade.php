@@ -13,6 +13,7 @@
                 @method('PUT')
 
                 <div class="row">
+                    
                     <!-- CPF -->
                     <div class="col-md-4">
                         <label for="cpf">CPF:</label>
